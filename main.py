@@ -14,12 +14,11 @@ start_time = datetime.now()
 for port in range(start_port, end_port + 1):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.settimeout(0.01)  # Bağlantı süresi
+    print(f"Port {port} taranıyor...", end="\r")  # Şu anda taranan portu ekrana yazdırıyoruz
     result = sock.connect_ex((target_ip, port))  # Portu kontrol et
 
     if result == 0:
-        print(f"Port {port} açık")
-    else:
-        print(f"Port {port} kapalı")
+        print(f"\nPort {port} açık")  # Yalnızca açık olan portları yazdırıyoruz
     
     sock.close()
 
